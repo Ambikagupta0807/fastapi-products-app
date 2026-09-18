@@ -1,12 +1,7 @@
 import os
-from dotenv import load_dotenv
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
 
-load_dotenv()
-
-db_url = os.getenv("DATABASE_URL")
-
+db_url = os.getenv("DATABASE_URL", "mysql+pymysql://root:NewPassword%40123@localhost/myproject")
 engine = create_engine(db_url)
-
 session = sessionmaker(autocommit=False, autoflush=False, bind=engine)
